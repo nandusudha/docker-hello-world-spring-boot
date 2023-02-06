@@ -7,8 +7,8 @@ node {
     def dockerImage
     // ip address of the docker private repository(nexus)
     
-    def dockerRepoUrl = "localhost:8083"
-    def dockerImageName = "hello-world-java"
+    def dockerRepoUrl = "localhost:8080"
+    def dockerImageName = "nanduworld:1.1.1"
     def dockerImageTag = "${dockerRepoUrl}/${dockerImageName}:${env.BUILD_NUMBER}"
     
     stage('Clone Repo') { // for display purposes
@@ -43,7 +43,7 @@ node {
       sh "ls -all /var/run/docker.sock"
       sh "mv ./target/hello*.jar ./data" 
       
-      dockerImage = docker.build("hello-Narmada-java")
+      dockerImage = docker.build("hello-world-java")
     }
    
     stage('Deploy Docker Image'){
